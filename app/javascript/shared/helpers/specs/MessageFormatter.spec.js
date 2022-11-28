@@ -35,11 +35,11 @@ describe('#MessageFormatter', () => {
 
     it('should add links to @mentions', () => {
       const message =
-        '@chatquickapp is an opensource tool thanks @longnonexistenttwitterusername';
+        '@chatwootapp is an opensource tool thanks @longnonexistenttwitterusername';
       expect(
         new MessageFormatter(message, true, false).formattedMessage
       ).toMatch(
-        '<p><a href="http://twitter.com/chatquickapp" target="_blank" rel="noreferrer nofollow noopener">@chatquickapp</a> is an opensource tool thanks @longnonexistenttwitterusername</p>'
+        '<p><a href="http://twitter.com/chatquickapp" target="_blank" rel="noreferrer nofollow noopener">@chatwootapp</a> is an opensource tool thanks @longnonexistenttwitterusername</p>'
       );
     });
 
@@ -61,7 +61,7 @@ describe('#MessageFormatter', () => {
 
     it('should add links to @mentions', () => {
       const message =
-        '@chatquickapp is an opensource tool thanks @longnonexistenttwitterusername';
+        '@chatwootapp is an opensource tool thanks @longnonexistenttwitterusername';
       expect(
         new MessageFormatter(message, false, true).formattedMessage
       ).toMatch(message);

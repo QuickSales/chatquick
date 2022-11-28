@@ -87,7 +87,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import darkModeMixin from 'widget/mixins/darkModeMixin.js';
-import { getContrastingTextColor } from '@chatquick/utils';
+import { getContrastingTextColor } from '@chatwoot/utils';
 
 export default {
   mixins: [darkModeMixin],

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { debounce } from '@chatquick/utils';
+import { debounce } from '@chatwoot/utils';
 import ResizableTextArea from 'shared/components/ResizableTextArea';
 import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor.vue';
 

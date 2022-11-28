@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import { getContrastingTextColor } from '@chatquick/utils';
+import { getContrastingTextColor } from '@chatwoot/utils';
 
 export default {
   props: {

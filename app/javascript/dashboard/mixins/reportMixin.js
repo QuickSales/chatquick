@@ -1,5 +1,5 @@
 import { mapGetters } from 'vuex';
-import { formatTime } from '@chatquick/utils';
+import { formatTime } from '@chatwoot/utils';
 
 export default {
   computed: {

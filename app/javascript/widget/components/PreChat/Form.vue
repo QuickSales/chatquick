@@ -56,7 +56,7 @@
 import CustomButton from 'shared/components/Button';
 import Spinner from 'shared/components/Spinner';
 import { mapGetters } from 'vuex';
-import { getContrastingTextColor } from '@chatquick/utils';
+import { getContrastingTextColor } from '@chatwoot/utils';
 
 import { isEmptyObject } from 'widget/helpers/utils';
 import routerMixin from 'widget/mixins/routerMixin';

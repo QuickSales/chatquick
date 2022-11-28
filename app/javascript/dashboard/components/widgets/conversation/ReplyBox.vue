@@ -157,7 +157,7 @@ import uiSettingsMixin from 'dashboard/mixins/uiSettings';
 import { DirectUpload } from 'activestorage';
 import { frontendURL } from '../../../helper/URLHelper';
 import { LocalStorage, LOCAL_STORAGE_KEYS } from '../../../helper/localStorage';
-import { trimContent, debounce } from '@chatquick/utils';
+import { trimContent, debounce } from '@chatwoot/utils';
 import wootConstants from 'dashboard/constants';
 import { isEditorHotKeyEnabled } from 'dashboard/mixins/uiSettings';
 
