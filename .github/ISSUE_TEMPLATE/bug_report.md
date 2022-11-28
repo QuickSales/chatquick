@@ -37,9 +37,9 @@ Share the server logs to debug the issue further.
 
 **Environment**
 
-Describe whether you are using Chatwoot Cloud (chat.quicksales.vn) or a self-hosted installation of Chatwoot. If you are using a self-hosted installation of Chatwoot, describe the type of deployment (Docker/Linux VM installation/Heroku/Kubernetes/Other).
+Describe whether you are using Chatquick Cloud (chat.quicksales.vn) or a self-hosted installation of Chatquick. If you are using a self-hosted installation of Chatquick, describe the type of deployment (Docker/Linux VM installation/Heroku/Kubernetes/Other).
 
-- [ ] chat.quicksales.vn (Chatwoot Cloud)
+- [ ] chat.quicksales.vn (Chatquick Cloud)
 - [ ] Self-hosted
 - - [ ] Linux VM
 - - [ ] Docker
