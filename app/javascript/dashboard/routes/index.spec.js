@@ -103,7 +103,7 @@ describe('#validateAuthenticateRoutePermission', () => {
 
 describe('#validateRouteAccess', () => {
   it('returns to login if signup is disabled', () => {
-    window.chatwootConfig = { signupEnabled: 'false' };
+    window.chatquickConfig = { signupEnabled: 'false' };
     const to = { name: 'auth_signup', meta: { requireSignupEnabled: true } };
     const from = { name: '' };
     const next = jest.fn();

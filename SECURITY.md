@@ -48,7 +48,7 @@ We consider the following out of scope, though there may be exceptions.
 - Brute force attacks
 - DNSSEC
 
-If you are unsure about the scope, please create a [report](https://huntr.dev/repos/chatwoot/chatwoot/).
+If you are unsure about the scope, please create a [report](https://huntr.dev/repos/chatquick/chatquick/).
 
 
 ## Thanks

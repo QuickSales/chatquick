@@ -13,7 +13,7 @@ RSpec.describe 'Twitter::CallbacksController', type: :request do
     allow(::Redis::Alfred).to receive(:delete).and_return('OK')
     allow(twitter_client).to receive(:access_token).and_return(twitter_response)
     allow(twitter_response).to receive(:raw_response).and_return(raw_response)
-    allow(raw_response).to receive(:body).and_return('oauth_token=1&oauth_token_secret=1&user_id=100&screen_name=chatwoot')
+    allow(raw_response).to receive(:body).and_return('oauth_token=1&oauth_token_secret=1&user_id=100&screen_name=chatquick')
     allow(::Twitter::WebhookSubscribeService).to receive(:new).and_return(webhook_service)
   end
 
@@ -24,7 +24,7 @@ RSpec.describe 'Twitter::CallbacksController', type: :request do
       account.reload
       expect(response).to redirect_to app_twitter_inbox_agents_url(account_id: account.id, inbox_id: account.inboxes.last.id)
       expect(account.inboxes.count).to be 1
-      expect(account.twitter_profiles.last.inbox.name).to eq 'chatwoot'
+      expect(account.twitter_profiles.last.inbox.name).to eq 'chatquick'
       expect(account.twitter_profiles.last.profile_id).to eq '100'
     end
 

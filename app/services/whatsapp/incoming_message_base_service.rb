@@ -34,7 +34,7 @@ class Whatsapp::IncomingMessageBaseService
   end
 
   def message_content(message)
-    # TODO: map interactive messages back to button messages in chatwoot
+    # TODO: map interactive messages back to button messages in chatquick
     message.dig(:text, :body) ||
       message.dig(:button, :text) ||
       message.dig(:interactive, :button_reply, :title) ||

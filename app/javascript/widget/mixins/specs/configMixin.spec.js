@@ -19,7 +19,7 @@ const preChatFields = [
     enabled: true,
   },
 ];
-global.chatwootWebChannel = {
+global.chatquickWebChannel = {
   avatarUrl: 'https://test.url',
   hasAConnectedAgentBot: 'AgentBot',
   enabledFeatures: ['emoji_picker', 'attachments', 'end_conversation'],
@@ -27,7 +27,7 @@ global.chatwootWebChannel = {
   preChatFormEnabled: true,
 };
 
-global.chatwootWidgetDefaults = {
+global.chatquickWidgetDefaults = {
   useInboxAvatarForBot: true,
 };
 

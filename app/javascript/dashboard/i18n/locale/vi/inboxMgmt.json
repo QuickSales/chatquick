@@ -658,7 +658,7 @@
         "AGENT_MESSAGE": "Xin chào"
       },
       "BRANDING_TEXT": "CC bởi Chatquick",
-      "SCRIPT_SETTINGS": "\nwindow.chatwootSettings = {options};"
+      "SCRIPT_SETTINGS": "\nwindow.chatquickSettings = {options};"
     }
   }
 }

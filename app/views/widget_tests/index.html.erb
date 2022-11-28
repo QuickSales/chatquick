@@ -12,7 +12,7 @@
 %>
 <script>
 
-window.chatwootSettings = {
+window.chatquickSettings = {
   hideMessageBubble: false,
   position: '<%= @widget_position %>',
   locale: 'en',
@@ -31,17 +31,17 @@ window.chatwootSettings = {
   g.async = true;
   s.parentNode.insertBefore(g,s);
   g.onload=function(){
-    window.chatwootSDK.run({
+    window.chatquickSDK.run({
       websiteToken: '<%= @web_widget.website_token %>',
       baseUrl: BASE_URL
     })
   }
 })(document,"script");
 
-window.addEventListener('chatwoot:ready', function() {
-  console.log('chatwoot:ready', window.$chatwoot);
+window.addEventListener('chatquick:ready', function() {
+  console.log('chatquick:ready', window.$chatquick);
   if (window.location.search.includes('setUser')) {
-    window.$chatwoot.setUser('<%= user_id %>', {
+    window.$chatquick.setUser('<%= user_id %>', {
       identifier_hash: '<%= user_hash %>',
       email: 'jane@example.com',
       name: 'Jane Doe',
@@ -50,7 +50,7 @@ window.addEventListener('chatwoot:ready', function() {
   }
 })
 
-window.addEventListener('chatwoot:error', function(e) {
-  console.log('chatwoot:error', e.detail)
+window.addEventListener('chatquick:error', function(e) {
+  console.log('chatquick:error', e.detail)
 })
 </script>

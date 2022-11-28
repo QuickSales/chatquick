@@ -73,7 +73,7 @@
     "SLACK": {
       "HELP_TEXT": {
         "TITLE": "Using Slack Integration",
-        "BODY": "<br/><p>Chatquick mun nú samstilla öll innkomin samtöl inn á <b><i>customer-conversations</i></b> á Slack vinnusvæðinu þínu.</p><p>Að svara samtalsþræði í <b><i>customer-conversations</i></b> Slack rás mun senda svar til viðskiptavinar í gegnum chatwoot.</p><p>Byrjaðu svörin með <b><i> note:</i></b> til að búa til einkaglósur í stað svara.</p><p>Ef svarandinn á Slack er með skráðann þjónustufulltrúa í chatwoot undir sama netfangi verða svörin tengd í samræmi við það.</p><p>Þegar svarandinn er ekki með tengdan þjónustufulltrúa verða svörin gerð úr spjallmanna prófílnum.</p>"
+        "BODY": "<br/><p>Chatquick mun nú samstilla öll innkomin samtöl inn á <b><i>customer-conversations</i></b> á Slack vinnusvæðinu þínu.</p><p>Að svara samtalsþræði í <b><i>customer-conversations</i></b> Slack rás mun senda svar til viðskiptavinar í gegnum chatquick.</p><p>Byrjaðu svörin með <b><i> note:</i></b> til að búa til einkaglósur í stað svara.</p><p>Ef svarandinn á Slack er með skráðann þjónustufulltrúa í chatquick undir sama netfangi verða svörin tengd í samræmi við það.</p><p>Þegar svarandinn er ekki með tengdan þjónustufulltrúa verða svörin gerð úr spjallmanna prófílnum.</p>"
       }
     },
     "DELETE": {

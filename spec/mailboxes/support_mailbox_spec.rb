@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SupportMailbox, type: :mailbox do
   include ActionMailbox::TestHelper
 
-  describe 'when a chatwoot notification email is received' do
+  describe 'when a chatquick notification email is received' do
     let(:account) { create(:account) }
     let!(:channel_email) { create(:channel_email, email: 'sojan@quicksales.vn', account: account) }
     let(:notification_mail) { create_inbound_email_from_fixture('notification.eml') }

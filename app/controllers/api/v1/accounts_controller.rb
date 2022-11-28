@@ -31,7 +31,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def show
-    @latest_chatwoot_version = ::Redis::Alfred.get(::Redis::Alfred::LATEST_CHATQUICK_VERSION)
+    @latest_chatquick_version = ::Redis::Alfred.get(::Redis::Alfred::LATEST_CHATQUICK_VERSION)
     render 'api/v1/accounts/show', format: :json
   end
 

@@ -658,7 +658,7 @@
         "AGENT_MESSAGE": "Доброго дня"
       },
       "BRANDING_TEXT": "Працює на Chatquick",
-      "SCRIPT_SETTINGS": "\n      window.chatwootSettings = {options};"
+      "SCRIPT_SETTINGS": "\n      window.chatquickSettings = {options};"
     }
   }
 }

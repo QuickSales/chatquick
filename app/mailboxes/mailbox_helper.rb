@@ -48,7 +48,7 @@ module MailboxHelper
     @contact = @contact_inbox.contact
   end
 
-  def notification_email_from_chatwoot?
+  def notification_email_from_chatquick?
     # notification emails are send via mailer sender email address. so it should match
     @processed_mail.original_sender == Mail::Address.new(ENV.fetch('MAILER_SENDER_EMAIL', 'Chatquick <accounts@quicksales.vn>')).address
   end

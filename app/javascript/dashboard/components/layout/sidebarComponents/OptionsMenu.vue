@@ -20,7 +20,7 @@
             {{ $t('SIDEBAR_ITEMS.CHANGE_ACCOUNTS') }}
           </woot-button>
         </woot-dropdown-item>
-        <woot-dropdown-item v-if="globalConfig.chatwootInboxToken">
+        <woot-dropdown-item v-if="globalConfig.chatquickInboxToken">
           <woot-button
             variant="clear"
             color-scheme="secondary"

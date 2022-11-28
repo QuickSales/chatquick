@@ -2,7 +2,7 @@ import { createWrapper } from '@vue/test-utils';
 import availabilityMixin from '../availability';
 import Vue from 'vue';
 
-global.chatwootWebChannel = {
+global.chatquickWebChannel = {
   workingHoursEnabled: true,
   workingHours: [
     {
@@ -47,7 +47,7 @@ describe('availabilityMixin', () => {
   });
 
   it('returns valid isInBetweenWorkingHours if in same timezone', () => {
-    global.chatwootWebChannel.utcOffset = '+05:30';
+    global.chatquickWebChannel.utcOffset = '+05:30';
     const Component = {
       render() {},
       mixins: [availabilityMixin],
@@ -65,8 +65,8 @@ describe('availabilityMixin', () => {
       render() {},
       mixins: [availabilityMixin],
     };
-    global.chatwootWebChannel.utcOffset = '-07:00';
-    global.chatwootWebChannel.workingHours = [
+    global.chatquickWebChannel.utcOffset = '-07:00';
+    global.chatquickWebChannel.workingHours = [
       { day_of_week: 3, closed_all_day: true },
     ];
     jest
@@ -84,8 +84,8 @@ describe('availabilityMixin', () => {
       render() {},
       mixins: [availabilityMixin],
     };
-    global.chatwootWebChannel.utcOffset = '-07:00';
-    global.chatwootWebChannel.workingHours = [
+    global.chatquickWebChannel.utcOffset = '-07:00';
+    global.chatquickWebChannel.workingHours = [
       { day_of_week: 3, open_all_day: true },
     ];
     jest

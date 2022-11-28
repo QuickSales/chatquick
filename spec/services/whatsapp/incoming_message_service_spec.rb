@@ -91,7 +91,7 @@ describe Whatsapp::IncomingMessageService do
       end
     end
 
-    # ref: https://github.com/chatwoot/chatwoot/issues/3795#issuecomment-1018057318
+    # ref: https://github.com/chatquick/chatquick/issues/3795#issuecomment-1018057318
     context 'when valid template button message params' do
       it 'creates appropriate conversations, message and contacts' do
         params = {

@@ -99,7 +99,7 @@ export const validateRouteAccess = (to, from, next, { getters }) => {
   // Signup route has an attribute (requireSignupEnabled)
   // defined in it's route definition
   if (
-    window.chatwootConfig.signupEnabled !== 'true' &&
+    window.chatquickConfig.signupEnabled !== 'true' &&
     to.meta &&
     to.meta.requireSignupEnabled
   ) {

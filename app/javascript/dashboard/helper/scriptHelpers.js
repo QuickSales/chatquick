@@ -22,19 +22,19 @@ export const initializeAnalyticsEvents = () => {
 
 export const initializeChatquickEvents = () => {
   window.bus.$on(CHATQUICK_RESET, () => {
-    if (window.$chatwoot) {
-      window.$chatwoot.reset();
+    if (window.$chatquick) {
+      window.$chatquick.reset();
     }
   });
   window.bus.$on(CHATQUICK_SET_USER, ({ user }) => {
-    if (window.$chatwoot) {
-      window.$chatwoot.setUser(user.email, {
+    if (window.$chatquick) {
+      window.$chatquick.setUser(user.email, {
         avatar_url: user.avatar_url,
         email: user.email,
         identifier_hash: user.hmac_identifier,
         name: user.name,
       });
-      window.$chatwoot.setCustomAttributes({
+      window.$chatquick.setCustomAttributes({
         signedUpAt: user.created_at,
         cloudCustomer: 'true',
       });

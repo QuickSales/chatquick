@@ -9,8 +9,8 @@ class Imap::ImapMailbox
     load_inbox
     decorate_mail
 
-    # prevent loop from chatwoot notification emails
-    return if notification_email_from_chatwoot?
+    # prevent loop from chatquick notification emails
+    return if notification_email_from_chatquick?
 
     ActiveRecord::Base.transaction do
       find_or_create_contact

@@ -129,7 +129,7 @@ trap exit_handler EXIT
 ##############################################################################
 function exit_handler() {
   if [ "$?" -ne 0 ] && [ "$u" == "n" ]; then
-   echo -en "\nSome error has occured. Check '/var/log/chatwoot-setup.log' for details.\n"
+   echo -en "\nSome error has occured. Check '/var/log/chatquick-setup.log' for details.\n"
    exit 1
   fi
 }
@@ -145,7 +145,7 @@ function exit_handler() {
 #   None
 ##############################################################################
 function get_domain_info() {
-  read -rp 'Enter the domain/subdomain for Chatquick (e.g., chatwoot.domain.com): ' domain_name
+  read -rp 'Enter the domain/subdomain for Chatquick (e.g., chatquick.domain.com): ' domain_name
   read -rp 'Enter an email address for LetsEncrypt to send reminders when your SSL certificate is up for renewal: ' le_email
   cat << EOF
 
@@ -213,7 +213,7 @@ function install_webserver() {
 }
 
 ##############################################################################
-# Create chatwoot linux user
+# Create chatquick linux user
 # Globals:
 #   None
 # Arguments:
@@ -222,8 +222,8 @@ function install_webserver() {
 #   None
 ##############################################################################
 function create_cw_user() {
-  if ! id -u "chatwoot"; then
-    adduser --disabled-login --gecos "" chatwoot
+  if ! id -u "chatquick"; then
+    adduser --disabled-login --gecos "" chatquick
   fi
 }
 
@@ -242,7 +242,7 @@ function configure_rvm() {
   gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   gpg2 --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   curl -sSL https://get.rvm.io | bash -s stable
-  adduser chatwoot rvm
+  adduser chatquick rvm
 }
 
 ##############################################################################
@@ -255,10 +255,10 @@ function configure_rvm() {
 #   None
 ##############################################################################
 function save_pgpass() {
-  mkdir -p /opt/chatwoot/config
-  file="/opt/chatwoot/config/.pg_pass"
+  mkdir -p /opt/chatquick/config
+  file="/opt/chatquick/config/.pg_pass"
   if ! test -f "$file"; then
-    echo $pg_pass > /opt/chatwoot/config/.pg_pass
+    echo $pg_pass > /opt/chatquick/config/.pg_pass
   fi
 }
 
@@ -273,7 +273,7 @@ function save_pgpass() {
 #   None
 ##############################################################################
 function get_pgpass() {
-  file="/opt/chatwoot/config/.pg_pass"
+  file="/opt/chatquick/config/.pg_pass"
   if test -f "$file"; then
     pg_pass=$(cat $file)
   fi
@@ -281,7 +281,7 @@ function get_pgpass() {
 }
 
 ##############################################################################
-# Configure postgres to create chatwoot db user.
+# Configure postgres to create chatquick db user.
 # Enable postgres and redis systemd services.
 # Globals:
 #   None
@@ -295,9 +295,9 @@ function configure_db() {
   get_pgpass
   sudo -i -u postgres psql << EOF
     \set pass `echo $pg_pass`
-    CREATE USER chatwoot CREATEDB;
-    ALTER USER chatwoot PASSWORD :'pass';
-    ALTER ROLE chatwoot SUPERUSER;
+    CREATE USER chatquick CREATEDB;
+    ALTER USER chatquick PASSWORD :'pass';
+    ALTER ROLE chatquick SUPERUSER;
     UPDATE pg_database SET datistemplate = FALSE WHERE datname = 'template1';
     DROP DATABASE template1;
     CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UNICODE';
@@ -320,19 +320,19 @@ EOF
 # Outputs:
 #   None
 ##############################################################################
-function setup_chatwoot() {
+function setup_chatquick() {
   local secret=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 63 ; echo '')
   local RAILS_ENV=production
   get_pgpass
 
-  sudo -i -u chatwoot << EOF
+  sudo -i -u chatquick << EOF
   rvm --version
   rvm autolibs disable
   rvm install "ruby-3.0.4"
   rvm use 3.0.4 --default
 
-  git clone https://github.com/chatwoot/chatwoot.git
-  cd chatwoot
+  git clone https://github.com/chatquick/chatquick.git
+  cd chatquick
   git checkout "$BRANCH"
   bundle
   yarn
@@ -341,7 +341,7 @@ function setup_chatwoot() {
   sed -i -e "/SECRET_KEY_BASE/ s/=.*/=$secret/" .env
   sed -i -e '/REDIS_URL/ s/=.*/=redis:\/\/localhost:6379/' .env
   sed -i -e '/POSTGRES_HOST/ s/=.*/=localhost/' .env
-  sed -i -e '/POSTGRES_USERNAME/ s/=.*/=chatwoot/' .env
+  sed -i -e '/POSTGRES_USERNAME/ s/=.*/=chatquick/' .env
   sed -i -e "/POSTGRES_PASSWORD/ s/=.*/=$pg_pass/" .env
   sed -i -e '/RAILS_ENV/ s/=.*/=$RAILS_ENV/' .env
   echo -en "\nINSTALLATION_ENV=linux_script" >> ".env"
@@ -360,9 +360,9 @@ EOF
 #   None
 ##############################################################################
 function run_db_migrations(){
-  sudo -i -u chatwoot << EOF
-  cd chatwoot
-  RAILS_ENV=production bundle exec rails db:chatwoot_prepare
+  sudo -i -u chatquick << EOF
+  cd chatquick
+  RAILS_ENV=production bundle exec rails db:chatquick_prepare
 EOF
 }
 
@@ -376,16 +376,16 @@ EOF
 #   None
 ##############################################################################
 function configure_systemd_services() {
-  cp /home/chatwoot/chatwoot/deployment/chatwoot-web.1.service /etc/systemd/system/chatwoot-web.1.service
-  cp /home/chatwoot/chatwoot/deployment/chatwoot-worker.1.service /etc/systemd/system/chatwoot-worker.1.service
-  cp /home/chatwoot/chatwoot/deployment/chatwoot.target /etc/systemd/system/chatwoot.target
+  cp /home/chatquick/chatquick/deployment/chatquick-web.1.service /etc/systemd/system/chatquick-web.1.service
+  cp /home/chatquick/chatquick/deployment/chatquick-worker.1.service /etc/systemd/system/chatquick-worker.1.service
+  cp /home/chatquick/chatquick/deployment/chatquick.target /etc/systemd/system/chatquick.target
 
-  cp /home/chatwoot/chatwoot/deployment/chatwoot /etc/sudoers.d/chatwoot
-  cp /home/chatwoot/chatwoot/deployment/setup_20.04.sh /usr/local/bin/cwctl
+  cp /home/chatquick/chatquick/deployment/chatquick /etc/sudoers.d/chatquick
+  cp /home/chatquick/chatquick/deployment/setup_20.04.sh /usr/local/bin/cwctl
   chmod +x /usr/local/bin/cwctl
 
-  systemctl enable chatwoot.target
-  systemctl start chatwoot.target
+  systemctl enable chatquick.target
+  systemctl start chatquick.target
 }
 
 ##############################################################################
@@ -407,17 +407,17 @@ function setup_ssl() {
     echo "debug: letsencrypt email: $le_email"
   fi
   curl https://ssl-config.mozilla.org/ffdhe4096.txt >> /etc/ssl/dhparam
-  wget https://raw.githubusercontent.com/chatwoot/chatwoot/develop/deployment/nginx_chatwoot.conf
-  cp nginx_chatwoot.conf /etc/nginx/sites-available/nginx_chatwoot.conf
+  wget https://raw.githubusercontent.com/chatquick/chatquick/develop/deployment/nginx_chatquick.conf
+  cp nginx_chatquick.conf /etc/nginx/sites-available/nginx_chatquick.conf
   certbot certonly --non-interactive --agree-tos --nginx -m "$le_email" -d "$domain_name"
-  sed -i "s/chatwoot.domain.com/$domain_name/g" /etc/nginx/sites-available/nginx_chatwoot.conf
-  ln -s /etc/nginx/sites-available/nginx_chatwoot.conf /etc/nginx/sites-enabled/nginx_chatwoot.conf
+  sed -i "s/chatquick.domain.com/$domain_name/g" /etc/nginx/sites-available/nginx_chatquick.conf
+  ln -s /etc/nginx/sites-available/nginx_chatquick.conf /etc/nginx/sites-enabled/nginx_chatquick.conf
   systemctl restart nginx
-  sudo -i -u chatwoot << EOF
-  cd chatwoot
+  sudo -i -u chatquick << EOF
+  cd chatquick
   sed -i "s/http:\/\/0.0.0.0:3000/https:\/\/$domain_name/g" .env
 EOF
-  systemctl restart chatwoot.target
+  systemctl restart chatquick.target
 }
 
 ##############################################################################
@@ -430,8 +430,8 @@ EOF
 #   None
 ##############################################################################
 function setup_logging() {
-  touch /var/log/chatwoot-setup.log
-  LOG_FILE="/var/log/chatwoot-setup.log"
+  touch /var/log/chatquick-setup.log
+  LOG_FILE="/var/log/chatquick-setup.log"
 }
 
 function ssl_success_message() {
@@ -485,7 +485,7 @@ function install() {
 ***************************************************************************
 
 For more verbose logs, open up a second terminal and follow along using,
-'tail -f /var/log/chatwoot-setup.log'.
+'tail -f /var/log/chatquick-setup.log'.
 
 EOF
 
@@ -527,7 +527,7 @@ EOF
   fi
 
   echo "➥ 6/9 Installing Chatquick. This takes a long while."
-  setup_chatwoot &>> "${LOG_FILE}"
+  setup_chatquick &>> "${LOG_FILE}"
 
   if [ "$install_pg_redis" != "no" ]; then
     echo "➥ 7/9 Running database migrations."
@@ -551,7 +551,7 @@ Woot! Woot!! Chatquick server installation is complete.
 The server will be accessible at http://$public_ip:3000
 
 To configure a domain and SSL certificate, follow the guide at
-https://www.quicksales.vn/docs/deployment/deploy-chatwoot-in-linux-vm?utm_source=cwctl
+https://www.quicksales.vn/docs/deployment/deploy-chatquick-in-linux-vm?utm_source=cwctl
 
 Join the community at https://quicksales.vn/community?utm_source=cwctl
 ***************************************************************************
@@ -574,7 +574,7 @@ The database migrations had not run as Postgres and Redis were not installed
 as part of the installation process. After modifying the environment
 variables (in the .env file) with your external database credentials, run
 the database migrations using the below command.
-'RAILS_ENV=production bundle exec rails db:chatwoot_prepare'.
+'RAILS_ENV=production bundle exec rails db:chatquick_prepare'.
 ***************************************************************************
 
 EOF
@@ -595,7 +595,7 @@ exit 0
 #   None
 ##############################################################################
 function get_console() {
-  sudo -i -u chatwoot bash -c " cd chatwoot && RAILS_ENV=production bundle exec rails c"
+  sudo -i -u chatquick bash -c " cd chatquick && RAILS_ENV=production bundle exec rails c"
 }
 
 ##############################################################################
@@ -639,7 +639,7 @@ Miscellaneous:
 Exit status:
 Returns 0 if successful; non-zero otherwise.
 
-Report bugs at https://github.com/chatwoot/chatwoot/issues
+Report bugs at https://github.com/chatquick/chatquick/issues
 Get help, https://quicksales.vn/community?utm_source=cwctl
 
 EOF
@@ -656,10 +656,10 @@ EOF
 ##############################################################################
 function get_logs() {
   if [ "$SERVICE" == "worker" ]; then
-    journalctl -u chatwoot-worker.1.service -f
+    journalctl -u chatquick-worker.1.service -f
   fi
   if [ "$SERVICE" == "web" ]; then
-    journalctl -u chatwoot-web.1.service -f
+    journalctl -u chatquick-web.1.service -f
   fi
 }
 
@@ -696,8 +696,8 @@ function ssl() {
 #   None
 ##############################################################################
 function upgrade_prereq() {
-  sudo -i -u chatwoot << "EOF"
-  cd chatwoot
+  sudo -i -u chatquick << "EOF"
+  cd chatquick
   git update-index --refresh
   git diff-index --quiet HEAD --
   if [ "$?" -eq 1 ]; then
@@ -722,10 +722,10 @@ function upgrade() {
   echo "Upgrading Chatquick to v$CW_VERSION"
   sleep 3
   upgrade_prereq
-  sudo -i -u chatwoot << "EOF"
+  sudo -i -u chatquick << "EOF"
 
   # Navigate to the Chatquick directory
-  cd chatwoot
+  cd chatquick
 
   # Pull the latest version of the master branch
   git checkout master && git pull
@@ -749,17 +749,17 @@ function upgrade() {
 EOF
 
   # Copy the updated targets
-  cp /home/chatwoot/chatwoot/deployment/chatwoot-web.1.service /etc/systemd/system/chatwoot-web.1.service
-  cp /home/chatwoot/chatwoot/deployment/chatwoot-worker.1.service /etc/systemd/system/chatwoot-worker.1.service
-  cp /home/chatwoot/chatwoot/deployment/chatwoot.target /etc/systemd/system/chatwoot.target
+  cp /home/chatquick/chatquick/deployment/chatquick-web.1.service /etc/systemd/system/chatquick-web.1.service
+  cp /home/chatquick/chatquick/deployment/chatquick-worker.1.service /etc/systemd/system/chatquick-worker.1.service
+  cp /home/chatquick/chatquick/deployment/chatquick.target /etc/systemd/system/chatquick.target
 
-  cp /home/chatwoot/chatwoot/deployment/chatwoot /etc/sudoers.d/chatwoot
+  cp /home/chatquick/chatquick/deployment/chatquick /etc/sudoers.d/chatquick
   # TODO:(@vn) handle cwctl updates
 
   systemctl daemon-reload
 
-  # Restart the chatwoot server
-  systemctl restart chatwoot.target
+  # Restart the chatquick server
+  systemctl restart chatquick.target
 
 }
 
@@ -773,8 +773,8 @@ EOF
 #   None
 ##############################################################################
 function restart() {
-  systemctl restart chatwoot.target
-  systemctl status chatwoot.target
+  systemctl restart chatquick.target
+  systemctl status chatquick.target
 }
 
 ##############################################################################

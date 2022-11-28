@@ -32,7 +32,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { getContrastingTextColor } from '@chatwoot/utils';
+import { getContrastingTextColor } from '@chatquick/utils';
 import CustomButton from 'shared/components/Button';
 import ChatInputWrap from 'widget/components/ChatInputWrap.vue';
 import { BUS_EVENTS } from 'shared/constants/busEvents';
@@ -62,7 +62,7 @@ export default {
       return getContrastingTextColor(this.widgetColor);
     },
     hideReplyBox() {
-      const { allowMessagesAfterResolved } = window.chatwootWebChannel;
+      const { allowMessagesAfterResolved } = window.chatquickWebChannel;
       const { status } = this.conversationAttributes;
       return !allowMessagesAfterResolved && status === 'resolved';
     },

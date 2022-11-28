@@ -204,7 +204,7 @@ export default {
           custom_email_domain_enabled,
           features,
           auto_resolve_duration,
-          latest_chatwoot_version: latestChatquickVersion,
+          latest_chatquick_version: latestChatquickVersion,
         } = this.getAccount(this.accountId);
 
         this.$root.$i18n.locale = locale;

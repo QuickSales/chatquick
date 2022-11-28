@@ -89,7 +89,7 @@ export default {
       this.closeWindow();
       const {
         location: { origin },
-        chatwootWebChannel: { websiteToken },
+        chatquickWebChannel: { websiteToken },
         authToken,
       } = window;
       popoutChatWindow(

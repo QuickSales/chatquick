@@ -31,7 +31,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="<%= @global_config['LOGO_THUMBNAIL'] %>">
     <%= csrf_meta_tags %>
     <script>
-      window.chatwootConfig = {
+      window.chatquickConfig = {
         hostURL: '<%= ENV.fetch('FRONTEND_URL', '') %>',
         helpCenterURL: '<%= ENV.fetch('HELPCENTER_URL', '') %>',
         fbAppId: '<%= ENV.fetch('FB_APP_ID', nil) %>',
@@ -68,14 +68,14 @@
     <%= yield %>
     <% if @global_config['CHATQUICK_INBOX_TOKEN'].present? %>
     <script>
-      window.chatwootSettings = { hideMessageBubble: true, position: 'left' };
+      window.chatquickSettings = { hideMessageBubble: true, position: 'left' };
       (function(d,t) {
         var BASE_URL='<%= ENV.fetch('FRONTEND_URL', 'https://chat.quicksales.vn') %>';
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=BASE_URL+"/packs/js/sdk.js"; g.defer=true; g.async=true;
         s.parentNode.insertBefore(g,s);
         g.onload=function(){
-          window.chatwootSDK.run({
+          window.chatquickSDK.run({
             websiteToken: '<%= @global_config['CHATQUICK_INBOX_TOKEN'] %>',
             baseUrl: BASE_URL,
           });

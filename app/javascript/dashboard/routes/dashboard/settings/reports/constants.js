@@ -1,4 +1,4 @@
-import { formatTime } from '@chatwoot/utils';
+import { formatTime } from '@chatquick/utils';
 
 export const GROUP_BY_FILTER = {
   1: { id: 1, period: 'day' },

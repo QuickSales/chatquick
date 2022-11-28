@@ -13,31 +13,31 @@ import {
 import { addClasses, removeClasses } from '../sdk/DOMHelpers';
 import { SDK_SET_BUBBLE_VISIBILITY } from 'shared/constants/sharedFrameEvents';
 const runSDK = ({ baseUrl, websiteToken }) => {
-  if (window.$chatwoot) {
+  if (window.$chatquick) {
     return;
   }
 
-  const chatwootSettings = window.chatwootSettings || {};
-  let locale = chatwootSettings.locale || 'en';
-  if (chatwootSettings.useBrowserLanguage) {
+  const chatquickSettings = window.chatquickSettings || {};
+  let locale = chatquickSettings.locale || 'en';
+  if (chatquickSettings.useBrowserLanguage) {
     locale = window.navigator.language.replace('-', '_');
   }
 
-  window.$chatwoot = {
+  window.$chatquick = {
     baseUrl,
     hasLoaded: false,
-    hideMessageBubble: chatwootSettings.hideMessageBubble || false,
+    hideMessageBubble: chatquickSettings.hideMessageBubble || false,
     isOpen: false,
-    position: chatwootSettings.position === 'left' ? 'left' : 'right',
+    position: chatquickSettings.position === 'left' ? 'left' : 'right',
     websiteToken,
     locale,
-    useBrowserLanguage: chatwootSettings.useBrowserLanguage || false,
-    type: getBubbleView(chatwootSettings.type),
-    launcherTitle: chatwootSettings.launcherTitle || '',
-    showPopoutButton: chatwootSettings.showPopoutButton || false,
-    widgetStyle: getWidgetStyle(chatwootSettings.widgetStyle) || 'standard',
+    useBrowserLanguage: chatquickSettings.useBrowserLanguage || false,
+    type: getBubbleView(chatquickSettings.type),
+    launcherTitle: chatquickSettings.launcherTitle || '',
+    showPopoutButton: chatquickSettings.showPopoutButton || false,
+    widgetStyle: getWidgetStyle(chatquickSettings.widgetStyle) || 'standard',
     resetTriggered: false,
-    darkMode: getDarkMode(chatwootSettings.darkMode),
+    darkMode: getDarkMode(chatquickSettings.darkMode),
 
     toggle(state) {
       IFrameHelper.events.toggleBubble(state);
@@ -49,21 +49,21 @@ const runSDK = ({ baseUrl, websiteToken }) => {
       if (visibility === 'hide') {
         addClasses(widgetHolder, 'woot-widget--without-bubble');
         addClasses(widgetElm, 'woot-hidden');
-        window.$chatwoot.hideMessageBubble = true;
+        window.$chatquick.hideMessageBubble = true;
       } else if (visibility === 'show') {
         removeClasses(widgetElm, 'woot-hidden');
         removeClasses(widgetHolder, 'woot-widget--without-bubble');
-        window.$chatwoot.hideMessageBubble = false;
+        window.$chatquick.hideMessageBubble = false;
       }
       IFrameHelper.sendMessage(SDK_SET_BUBBLE_VISIBILITY, {
-        hideMessageBubble: window.$chatwoot.hideMessageBubble,
+        hideMessageBubble: window.$chatquick.hideMessageBubble,
       });
     },
 
     popoutChatWindow() {
       IFrameHelper.events.popoutChatWindow({
-        baseUrl: window.$chatwoot.baseUrl,
-        websiteToken: window.$chatwoot.websiteToken,
+        baseUrl: window.$chatquick.baseUrl,
+        websiteToken: window.$chatquick.websiteToken,
         locale,
       });
     },
@@ -86,8 +86,8 @@ const runSDK = ({ baseUrl, websiteToken }) => {
         return;
       }
 
-      window.$chatwoot.identifier = identifier;
-      window.$chatwoot.user = user;
+      window.$chatquick.identifier = identifier;
+      window.$chatquick.user = user;
       IFrameHelper.sendMessage('set-user', { identifier, user });
       Cookies.set(userCookieName, hashToBeStored, {
         expires: 365,
@@ -126,7 +126,7 @@ const runSDK = ({ baseUrl, websiteToken }) => {
     },
 
     reset() {
-      if (window.$chatwoot.isOpen) {
+      if (window.$chatquick.isOpen) {
         IFrameHelper.events.toggleBubble();
       }
 
@@ -135,11 +135,11 @@ const runSDK = ({ baseUrl, websiteToken }) => {
 
       const iframe = IFrameHelper.getAppFrame();
       iframe.src = IFrameHelper.getUrl({
-        baseUrl: window.$chatwoot.baseUrl,
-        websiteToken: window.$chatwoot.websiteToken,
+        baseUrl: window.$chatquick.baseUrl,
+        websiteToken: window.$chatquick.websiteToken,
       });
 
-      window.$chatwoot.resetTriggered = true;
+      window.$chatquick.resetTriggered = true;
     },
   };
 
@@ -149,6 +149,6 @@ const runSDK = ({ baseUrl, websiteToken }) => {
   });
 };
 
-window.chatwootSDK = {
+window.chatquickSDK = {
   run: runSDK,
 };

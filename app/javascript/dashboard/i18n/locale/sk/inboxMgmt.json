@@ -658,7 +658,7 @@
         "AGENT_MESSAGE": "Hello"
       },
       "BRANDING_TEXT": "Používame Chatquick",
-      "SCRIPT_SETTINGS": "\n      window.chatwootSettings = {options};"
+      "SCRIPT_SETTINGS": "\n      window.chatquickSettings = {options};"
     }
   }
 }

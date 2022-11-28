@@ -9,7 +9,7 @@ class Notification::PushNotificationService
     notification_subscriptions.each do |subscription|
       send_browser_push(subscription)
       send_fcm_push(subscription)
-      send_push_via_chatwoot_hub(subscription)
+      send_push_via_chatquick_hub(subscription)
     end
   end
 
@@ -78,7 +78,7 @@ class Notification::PushNotificationService
     remove_subscription_if_error(subscription, response)
   end
 
-  def send_push_via_chatwoot_hub(subscription)
+  def send_push_via_chatquick_hub(subscription)
     return if ENV['FCM_SERVER_KEY']
     return unless ActiveModel::Type::Boolean.new.cast(ENV.fetch('ENABLE_PUSH_RELAY_SERVER', true))
     return unless subscription.fcm?
@@ -99,7 +99,7 @@ class Notification::PushNotificationService
       },
       android: { priority: 'high' },
       data: { notification: notification.fcm_push_data.to_json },
-      collapse_key: "chatwoot_#{notification.primary_actor_type.downcase}_#{notification.primary_actor_id}"
+      collapse_key: "chatquick_#{notification.primary_actor_type.downcase}_#{notification.primary_actor_id}"
     }
   end
 end

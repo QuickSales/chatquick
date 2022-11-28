@@ -1,2 +1,2 @@
-export const CHATQUICK_ERROR = 'chatwoot:error';
-export const CHATQUICK_READY = 'chatwoot:ready';
+export const CHATQUICK_ERROR = 'chatquick:error';
+export const CHATQUICK_READY = 'chatquick:ready';

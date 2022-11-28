@@ -1,6 +1,6 @@
 <template>
   <div v-if="!authUIFlags.isFetching" id="app" class="app-wrapper app-root">
-    <update-banner :latest-chatwoot-version="latestChatquickVersion" />
+    <update-banner :latest-chatquick-version="latestChatquickVersion" />
     <transition name="fade" mode="out-in">
       <router-view />
     </transition>
@@ -79,7 +79,7 @@ export default {
     },
   },
   mounted() {
-    this.setLocale(window.chatwootConfig.selectedLocale);
+    this.setLocale(window.chatquickConfig.selectedLocale);
   },
   methods: {
     setLocale(locale) {
@@ -92,7 +92,7 @@ export default {
       });
       const {
         locale,
-        latest_chatwoot_version: latestChatquickVersion,
+        latest_chatquick_version: latestChatquickVersion,
       } = this.getAccount(this.currentAccountId);
       const { pubsub_token: pubsubToken } = this.currentUser || {};
       this.setLocale(locale);

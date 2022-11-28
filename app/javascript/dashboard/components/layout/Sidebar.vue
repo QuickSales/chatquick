@@ -22,7 +22,7 @@
         :custom-views="customViews"
         :menu-config="activeSecondaryMenu"
         :current-role="currentRole"
-        :is-on-chatwoot-cloud="isOnChatquickCloud"
+        :is-on-chatquick-cloud="isOnChatquickCloud"
         @add-label="showAddLabelPopup"
         @toggle-accounts="toggleAccountModal"
       />
@@ -200,7 +200,7 @@ export default {
       return this.$route.name === routeName;
     },
     toggleSupportChatWindow() {
-      window.$chatwoot.toggle();
+      window.$chatquick.toggle();
     },
     toggleAccountModal() {
       this.$emit('toggle-account-modal');

@@ -658,7 +658,7 @@
         "AGENT_MESSAGE": "Hola"
       },
       "BRANDING_TEXT": "Desarrollado por Chatquick",
-      "SCRIPT_SETTINGS": "\n      window.chatwootSettings = {options};"
+      "SCRIPT_SETTINGS": "\n      window.chatquickSettings = {options};"
     }
   }
 }
