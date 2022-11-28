@@ -18,7 +18,7 @@ describe Enterprise::Billing::HandleStripeEventService do
     allow(subscription).to receive(:[]).with('quantity').and_return('10')
     allow(subscription).to receive(:customer).and_return('cus_123')
     create(:installation_config, {
-             name: 'CHATWOOT_CLOUD_PLANS',
+             name: 'CHATQUICK_CLOUD_PLANS',
              value: [
                {
                  'name' => 'Hacker',

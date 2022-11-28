@@ -30,10 +30,10 @@
 - name: INSTALLATION_EVENTS_WEBHOOK_URL
   value:
   locked: false
-- name: CHATWOOT_INBOX_TOKEN
+- name: CHATQUICK_INBOX_TOKEN
   value:
   locked: false
-- name: CHATWOOT_INBOX_HMAC_KEY
+- name: CHATQUICK_INBOX_HMAC_KEY
   value:
   locked: false
 - name: API_CHANNEL_NAME
@@ -68,7 +68,7 @@
 - name: CSML_BOT_API_KEY
   value:
   locked: false
-- name: CHATWOOT_CLOUD_PLANS
+- name: CHATQUICK_CLOUD_PLANS
   value:
 - name: DEPLOYMENT_ENV
   value: self-hosted

@@ -66,7 +66,7 @@
     <div id="app"></div>
     <noscript id="noscript">This app works best with JavaScript enabled.</noscript>
     <%= yield %>
-    <% if @global_config['CHATWOOT_INBOX_TOKEN'].present? %>
+    <% if @global_config['CHATQUICK_INBOX_TOKEN'].present? %>
     <script>
       window.chatwootSettings = { hideMessageBubble: true, position: 'left' };
       (function(d,t) {
@@ -76,7 +76,7 @@
         s.parentNode.insertBefore(g,s);
         g.onload=function(){
           window.chatwootSDK.run({
-            websiteToken: '<%= @global_config['CHATWOOT_INBOX_TOKEN'] %>',
+            websiteToken: '<%= @global_config['CHATQUICK_INBOX_TOKEN'] %>',
             baseUrl: BASE_URL,
           });
         }

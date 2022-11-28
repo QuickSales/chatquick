@@ -96,7 +96,7 @@
         <div>{{ `v${globalConfig.appVersion}` }}</div>
         <div v-if="hasAnUpdateAvailable && globalConfig.displayManifest">
           {{
-            $t('GENERAL_SETTINGS.UPDATE_CHATWOOT', {
+            $t('GENERAL_SETTINGS.UPDATE_CHATQUICK', {
               latestChatwootVersion: latestChatwootVersion,
             })
           }}

@@ -35,7 +35,7 @@ export default {
       );
     },
     bannerMessage() {
-      return this.$t('GENERAL_SETTINGS.UPDATE_CHATWOOT', {
+      return this.$t('GENERAL_SETTINGS.UPDATE_CHATQUICK', {
         latestChatwootVersion: this.latestChatwootVersion,
       });
     },

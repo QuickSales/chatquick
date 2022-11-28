@@ -1,7 +1,7 @@
 import posthog from 'posthog-js';
 
-export const CHATWOOT_SET_USER = 'CHATWOOT_SET_USER';
-export const CHATWOOT_RESET = 'CHATWOOT_RESET';
+export const CHATQUICK_SET_USER = 'CHATQUICK_SET_USER';
+export const CHATQUICK_RESET = 'CHATQUICK_RESET';
 
 export const ANALYTICS_IDENTITY = 'ANALYTICS_IDENTITY';
 export const ANALYTICS_RESET = 'ANALYTICS_RESET';
@@ -21,12 +21,12 @@ export const initializeAnalyticsEvents = () => {
 };
 
 export const initializeChatwootEvents = () => {
-  window.bus.$on(CHATWOOT_RESET, () => {
+  window.bus.$on(CHATQUICK_RESET, () => {
     if (window.$chatwoot) {
       window.$chatwoot.reset();
     }
   });
-  window.bus.$on(CHATWOOT_SET_USER, ({ user }) => {
+  window.bus.$on(CHATQUICK_SET_USER, ({ user }) => {
     if (window.$chatwoot) {
       window.$chatwoot.setUser(user.email, {
         avatar_url: user.avatar_url,
