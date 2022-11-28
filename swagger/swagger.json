@@ -13,7 +13,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "app.quicksales.vn",
+  "host": "chat.quicksales.vn",
   "basePath": "/",
   "schemes": [
     "https"

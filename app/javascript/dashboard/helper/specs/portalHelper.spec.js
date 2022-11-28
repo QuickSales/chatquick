@@ -4,7 +4,7 @@ describe('PortalHelper', () => {
   describe('buildPortalURL', () => {
     it('returns the correct url', () => {
       window.chatwootConfig = {
-        hostURL: 'https://app.quicksales.vn',
+        hostURL: 'https://chat.quicksales.vn',
         helpCenterURL: 'https://help.quicksales.vn',
       };
       expect(buildPortalURL('handbook')).toEqual(
@@ -17,7 +17,7 @@ describe('PortalHelper', () => {
   describe('buildPortalArticleURL', () => {
     it('returns the correct url', () => {
       window.chatwootConfig = {
-        hostURL: 'https://app.quicksales.vn',
+        hostURL: 'https://chat.quicksales.vn',
         helpCenterURL: 'https://help.quicksales.vn',
       };
       expect(buildPortalArticleURL('handbook', 'culture', 'fr', 1)).toEqual(
